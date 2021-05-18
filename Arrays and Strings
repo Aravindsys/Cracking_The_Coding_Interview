@@ -1,0 +1,19 @@
+1) Finding and removing the duplicate characters in String
+
+public class Main
+{
+	public static void main(String[] args) {
+		String str = "zaravindnnaajlkfnfadvlinzajfdiflmdkajfoefls#####((adfalh";
+		String[] array = str.split("");
+		for(Integer i = 0; i < array.length; i++){
+		    for(Integer j = i+1; j < array.length; j++){
+		        if(array[i].equals(array[j])){
+		            array[j] = "";
+		        }
+		    }
+		}
+		String result = String.join("",array);
+		System.out.println("The result: "+result);
+	}
+}
+
