@@ -29,3 +29,12 @@ public class Main
 		System.out.println("Result: "+flag);
 	}
 
+3) Replacing the string with spaces with %20:
+public class Main
+{
+	public static void main(String[] args) {
+	String str = "/Cool Class going on/api/home.apxc";
+	//str.replace(" ","%20");
+	System.out.println("The replaced URL: "+str.replace(" ","%20"));
+	}
+}
