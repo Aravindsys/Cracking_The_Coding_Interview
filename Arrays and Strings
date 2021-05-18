@@ -17,3 +17,15 @@ public class Main
 	}
 }
 
+2) To check whether two strings are anagrams or not:
+	public static void main(String[] args) {
+		String ana1 = "tips";
+		String[] ana1Array = ana1.split("");
+		String ana2 = "pits";
+		String[] ana2Array = ana2.split("");
+		Arrays.sort(ana1Array);  	Arrays.sort(ana2Array);
+		Boolean flag = false;
+	    if(String.join("",ana1Array).equals(String.join("",ana2Array))) flag = true;
+		System.out.println("Result: "+flag);
+	}
+
