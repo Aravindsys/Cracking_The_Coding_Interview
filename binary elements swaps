@@ -1,0 +1,14 @@
+//@parmas - array: input binary array whose elements to be swapped
+	//@return - elements whose values swapped in their position
+	public static int[] binarySwaps(int[] array) {
+		int[] rightShiftArray = new int[array.length];
+		int odder = array.length%2 == 0 ? 1 : 0;
+		for(int i = array.length-1; i >= 0; i--) {
+			if(i == 0 && array.length%2 != 0) rightShiftArray[i] = array[i];
+			else {
+			if(i%2 == odder) rightShiftArray[i-1] = array[i];
+			else rightShiftArray[i+1] = array[i];
+			}
+		}
+		return rightShiftArray;
+	}
