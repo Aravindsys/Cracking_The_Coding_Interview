@@ -1,0 +1,55 @@
+package simple;
+import java.util.*;
+import java.util.*;
+public class HelloWorld{
+	public static void main(String[] args) {
+		int[][] array = new int[][] {{1,1,0,0},{0,0,1,1},{0,0,1,1},{0,0,1,1}};
+		int result = maxRecArea(array);
+	 System.out.println("the max rect area in a 2d matrix: "+result);	
+	}
+	
+	public static int maxRecArea(int[][] array) {
+		int resMax = 0;
+		int[] inter = new int[array.length];
+		for(int i = 0; i < array.length; i++) {
+			for(int k = 0; k < array.length; k ++) {
+				if(i == 0) { inter[k] = array[i][k]; continue; }
+				if(array[i][k] == 0) inter[k] = 0;
+				else inter[k] = inter[k] + array[i][k];
+			}
+			int interMax = findMaxAreaInHist(inter);
+			if(interMax > resMax) resMax = interMax;
+		}
+		return resMax;
+	}
+	
+	
+	
+	
+	public static int findMaxAreaInHist(int[] array) {
+		int[] reverseArray = new int[array.length];
+		for(int i = array.length-1,j = 0; i > 0; i--) reverseArray[j++] = array[i];
+		int forward = compute(array);
+		int backward = compute(reverseArray);
+		return forward > backward ? forward : backward;
+	}
+	
+	public static int compute(int[] array) {
+		int max = array[0];
+		int wholeMax = max;
+		int lowest = array[0];
+		int counter = 1;
+		for(int i = 0; i < array.length; i++) {
+			if(array[i] < lowest) lowest = array[i];
+			if(array[i] == 0) counter = 0;
+			if(counter == 1 && i != 0) lowest = array[i];
+			int curr = lowest * counter;
+			if(curr < array[i]) max = array[i];
+			else max = curr;
+			if(max > wholeMax) wholeMax = max;
+			counter++;
+		}
+		return wholeMax;
+	}
+   
+}
