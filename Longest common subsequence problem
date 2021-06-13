@@ -1,0 +1,32 @@
+package simple;
+import java.util.*;
+import java.util.*;
+public class HelloWorld{
+	public static void main(String[] args) {
+	    String s1 = "abhtzmrd";
+	    String s2 = "azopmsrtqd";
+	    int[][] dp = longest(s1,s2);
+	    //Just for printing the array back
+	   /* for(int[] i : dp) {
+	    	for(int k : i) System.out.print(k+" ");
+	    	System.out.println();
+	    }*/
+	    System.out.println("Longest common subsequence is: "+dp[dp.length-1][dp[0].length-1]);
+	  }
+	
+	public static int[][] longest(String s1,String s2) {
+		String[] s1Array = s1.split("");
+		String[] s2Array = s2.split("");
+		int[][] dp = new int[s2Array.length+1][s1Array.length+1];
+	    for(int i = 1; i <= s2Array.length; i++) {
+	    	for(int k = 1; k <= s1Array.length; k++) {
+	    		if(s2Array[i-1].equals(s1Array[k-1])) {
+	    			dp[i][k] = Math.max(dp[i-1][k],dp[i][k-1]) + 1;
+	    		}
+	    		else {
+	    			dp[i][k] = Math.max(dp[i-1][k],dp[i][k-1]);
+	    		}
+	    	}
+	    }
+	    return dp;
+	}
