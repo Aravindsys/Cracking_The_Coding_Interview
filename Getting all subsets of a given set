@@ -1,0 +1,50 @@
+package simple;
+import java.util.*;
+import java.util.*;
+public class HelloWorld{
+	public static void main(String[] args) {
+	   List<Integer> array = new ArrayList<Integer>();
+	   array.add(10); array.add(5); array.add(3); array.add(2);
+	   subSet(array,0);
+	   for(List<Integer> k : totalSubSets) {
+		   System.out.println(k.toString()+" ");
+	   }
+	}
+	static List<List<Integer>> totalSubSets = new ArrayList<>();
+	
+	public static void subSet(List<Integer> array,int index) {
+		if(index == array.size()-1) {
+			List<Integer> interList = new ArrayList<Integer>();
+			interList.add(array.get(index));
+			totalSubSets.add(interList);
+		}
+		else {
+			Integer currValue = array.get(index);
+			subSet(array,index+1);
+			List<Integer> subList = new ArrayList<Integer>();
+			subList.add(currValue);
+	    //	totalSubSets.add(subList); 
+			List<List<Integer>> interList = new ArrayList<>();		
+			interList = clone(totalSubSets);
+		    for(List<Integer> i : interList) {
+		    	i.add(currValue);
+		    }
+		   totalSubSets.addAll(interList);
+		    totalSubSets.add(subList);
+		}
+	}
+	
+	public static List<List<Integer>> clone(final List<List<Integer>> src)
+	{
+	    List<List<Integer>> dest = new ArrayList<List<Integer>>();
+	    for( List<Integer> sublist : src) {
+	        List<Integer> temp = new ArrayList<Integer>();
+	        for(Integer val: sublist) {
+	            temp.add(val);
+	        }
+	        dest.add(temp);
+	    }
+	    return dest ;
+	} 
+	
+  }
