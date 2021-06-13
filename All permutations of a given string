@@ -1,0 +1,35 @@
+package simple;
+import java.util.*;
+import java.util.*;
+public class HelloWorld{
+	public static void main(String[] args) {
+	  String input = "abc";
+	  List<String> totalStrings = perm(input,0);
+	  for(String k : totalStrings) System.out.print(k+" ");
+	}
+	//public static List<String> totalStrings = new ArrayList<String>();
+	
+	public static List<String> perm(String input,int index) {
+		if(index == input.length()-1) {
+			List<String> totalList = new ArrayList<String>();
+			totalList.add(String.valueOf(input.charAt(index)));
+			return totalList;
+		}
+		else {
+		char currChar = input.charAt(index);
+		List<String> resultant = perm(input,index+1);
+		List<String> finalList = new ArrayList<String>();
+	      for(String i : resultant) {
+		      for(int k = 0; k <= i.length(); k++) {
+			     finalList.add(splitter(i,currChar,k));
+		     }
+	      }
+	      return finalList;
+		}
+	}
+	
+	public static String splitter(String mains, char curr, int index) {
+		String front = mains.substring(0,index);
+		String back = mains.substring(index,mains.length());
+		return front + curr + back;
+	}
