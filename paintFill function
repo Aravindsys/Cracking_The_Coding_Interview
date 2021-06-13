@@ -1,0 +1,46 @@
+package simple;
+import java.util.*;
+import java.util.*;
+public class HelloWorld{
+	public static void main(String[] args) {
+	  int[][] array = new int[][] {{0,1,1,0,0,0},{0,1,1,1,0,1},{0,1,1,1,1,1},{0,1,1,1,0,1}};
+	  int fillColor = 999;
+	  int row = 2,col = 4;
+	  array[row][col] = 999;
+	  paintFill(array,row,col,fillColor);
+	  for(int[] i : array) {
+		  for(int k : i) System.out.print(k+" ");
+		  System.out.println();
+	  }
+	 
+	}
+	
+	public static void paintFill(int[][] array,int row,int col,int fillColor) {
+		//checks for top
+		if((row-1) >= 0 && array[row-1][col] == 1 && array[row-1][col] != 999) {
+			array[row-1][col] = fillColor;
+			
+			paintFill(array,row-1,col,fillColor);
+		}
+		//checks for right
+		if((col+1) < array[0].length && array[row][col+1] == 1 && array[row][col+1] != 999) {
+			array[row][col+1] = fillColor;
+			
+			paintFill(array,row,col+1,fillColor);
+		}
+		//checks for bottom
+		if((row+1) < array.length && array[row+1][col] == 1 && array[row+1][col] != 999) {
+			array[row+1][col] = fillColor;
+			
+			paintFill(array,row+1,col,fillColor);
+		}
+		//checks for left
+		if((col-1) >= 0 && array[row][col-1] == 1 && array[row][col-1] != 999) {
+			array[row][col-1] = fillColor;
+			
+			paintFill(array,row,col-1,fillColor);	
+		}
+		return;
+	}
+	
+	
