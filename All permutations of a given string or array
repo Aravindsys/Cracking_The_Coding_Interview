@@ -1,0 +1,22 @@
+	public static void main(String[] args) {
+		List<Integer> a = new ArrayList<Integer>();
+		a.add(1);a.add(2);a.add(3);a.add(4);
+		permutate(a,0,a.size()-1);
+		System.out.println("Count: "+count);
+	}
+  
+  	static Integer count = 0;
+	public static void permutate(List<Integer> a,Integer l,Integer r){
+	    if(l == r){
+	        System.out.println(a.toString());
+	        count++;
+	        return;
+	    }
+	    
+	    for(Integer i = l; i <= r; i++){
+	        Collections.swap(a,i,l);
+	        permutate(a,l+1,r);
+	        Collections.swap(a,i,l);
+	    }
+	    
+	}
